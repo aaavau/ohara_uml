@@ -1,0 +1,45 @@
+@startuml 図書館システム-会員登録シーケンス図
+hide footbox
+skinparam boundaryBackgroundColor #D5E8D4
+skinparam controlBackgroundColor  #F8CECC
+skinparam entityBackgroundColor   #DAE8FC
+
+actor 利用者 as U
+participant 事務職員 as Staff
+boundary 会員登録画面 as B1
+boundary 入力フォーム画面 as B2
+boundary 登録完了画面 as B3
+control 入力検証処理 as C1
+control 会員登録処理 as C2
+entity 会員データベース as E
+
+U -> Staff: 会員登録を申し出る
+Staff -> U: 学生証又は職員証を確認する
+
+
+Staff -> B1: 会員登録画面を開く
+activate B1
+
+Staff -> B2: 利用者情報を入力
+activate B2
+
+B2 -> C1: 入力内容を送信
+activate C1
+C1 -> C2: 登録処理開始
+deactivate C1
+activate C2
+
+C2 -> E: 会員情報を保存
+activate E
+E --> C2: 保存完了
+deactivate E
+
+C2 -> B3: 登録完了画面を表示
+deactivate C2
+deactivate B2
+activate B3
+
+B3 -> Staff: 登録完了通知
+Staff -> U: 登録完了を伝える
+
+@enduml
