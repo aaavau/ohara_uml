@@ -1,0 +1,78 @@
+@startuml Robodogクラス図
+skinparam classAttributeIconSize 0
+hide circle
+
+@startuml
+ 
+class 商品 {
+  - 商品ID: int
+  - 商品名: String
+  - 価格: int
+  - 在庫数: int
+  - 説明: String
+  + 商品検索()
+  + 詳細表示()
+}
+ 
+class 会員 {
+  - 会員ID: int
+  - 氏名: String
+  - メール: String
+  - パスワード: String
+  + ログイン()
+  + 登録()
+  + 情報更新()
+}
+ 
+class 注文 {
+  - 注文ID: int
+  - 注文日: Date
+  - 状態: String
+  - 合計金額: int
+  + 注文確定()
+  + キャンセル()
+}
+ 
+class 決済 {
+  - 決済ID: int
+  - 金額: int
+  - 方法: String
+  - 状態: String
+  + 決済実行()
+  + 返金処理()
+}
+ 
+class 配送 {
+  - 配送ID: int
+  - 配送先: String
+  - 状態: String
+  + 出荷準備()
+  + 発送()
+  + 配達完了()
+}
+ 
+class 管理者 {
+  - 管理者ID: int
+  - 名前: String
+  - 権限: String
+  + 商品登録()
+  + 会員管理()
+}
+ 
+class レビュー {
+  - レビューID: int
+  - 内容: String
+  - 投稿日: Date
+  + 投稿()
+  + 表示()
+}
+ 
+会員 -- 注文
+注文 -- 商品
+注文 -- 決済
+注文 -- 配送
+商品 -- レビュー
+管理者 -- 商品
+管理者 -- 会員
+ 
+@enduml

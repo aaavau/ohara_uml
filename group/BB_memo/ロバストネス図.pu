@@ -1,0 +1,19 @@
+@startuml ロバストネス図
+
+actor 顧客
+
+boundary 注文メニュー選択
+control 注文処理コントローラ
+control ログイン状態確認
+boundary ログイン画面(未ログイン時)
+
+boundary 注文画面表示
+control カート情報取得
+entity カート
+
+boundary 注文内容確認・注文実行選択
+control 注文確定処理
+boundary 決済画面表示
+entity 注文情報
+
+@enduml
